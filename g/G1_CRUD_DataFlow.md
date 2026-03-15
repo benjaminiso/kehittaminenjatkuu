@@ -131,7 +131,3 @@ sequenceDiagram
         B-->>F: 200 OK / 204 No Content
         F-->>U: Show success message
     end
-
-
-
-
