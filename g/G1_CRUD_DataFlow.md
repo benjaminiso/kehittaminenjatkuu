@@ -45,7 +45,7 @@ sequenceDiagram
         Server-->>Frontend: 500 Internal Server Error
         Frontend-->>Browser: Show "Failed to load data"
     end
-    ```
+```
 
     
 ## 3. UPDATE (U)
@@ -72,7 +72,7 @@ sequenceDiagram
         Server-->>Frontend: 404 Not Found
         Frontend-->>Browser: Show "Resource not found"
     end
-    ```
+```
 ## 4. DELETE (D)
 
 ```mermaid
@@ -94,4 +94,4 @@ sequenceDiagram
         Server-->>Frontend: 404 Not Found
         Frontend-->>Browser: Show error "Item already deleted"
     end
-    ```
+```
