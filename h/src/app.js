@@ -1,3 +1,11 @@
+import session from "express-session";
+
+app.use(session({
+  secret: process.env.SESSION_SECRET || "super-secret-key",
+  resave: false,
+  saveUninitialized: false
+}));
+
 // src/app.js
 import express from "express";
 import resourcesRouter from "./routes/resources.routes.js";
@@ -38,7 +46,11 @@ app.get("/resources", (req, res) => {
 });
 
 app.get("/reservations", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/reservations.html'));
+  if (req.session && req.session.user) {
+    res.sendFile(path.join(__dirname, 'views/reservations.html'));
+  } else {
+    res.redirect("/login");
+  }
 });
 
 app.get("/login", (req, res) => {

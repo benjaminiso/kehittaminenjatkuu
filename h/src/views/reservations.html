@@ -1,0 +1,136 @@
+<!-- src/views/reservations.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reservations | Booking System</title>
+
+    <!-- Tailwind CDN + Brand config (reuse from resources.html) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            primary: "#e10e49",
+                            light: "#ffffff",
+                            dark: "#1e1e1e",
+                            blue: "#263f6a",
+                            green: "#284e36",
+                            orange: "#e37222",
+                            rose: "#c24d52",
+                        }
+                    },
+                    boxShadow: {
+                        soft: "0 8px 40px rgba(0, 0, 0, 0.45)",
+                    }
+                }
+            }
+        }
+    </script>
+    <script type="module" src="/js/reservations.js" defer></script>
+</head>
+
+<body class="min-h-screen flex flex-col bg-brand-light text-brand-dark">
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-40 bg-brand-dark text-white shadow-soft">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="flex h-16 items-center justify-between">
+                <a href="/" class="flex items-center gap-3 flex-1">
+                    <img src="logo.svg" alt="Booking System" class="h-10 w-10">
+                    <div class="leading-tight">
+                        <span class="block text-sm font-semibold">Booking System</span>
+                        <span class="block text-xs text-white/70">Secure resource booking</span>
+                    </div>
+                </a>
+                <nav class="flex items-center gap-3">
+                    <a href="/resources" class="rounded-xl border border-white/20 px-4 py-2 text-sm font-semibold hover:bg-white/10 w-40 text-center">
+                        Resources
+                    </a>
+                    <a href="/reservations" class="rounded-xl border border-white/20 px-4 py-2 text-sm font-semibold hover:bg-white/10 w-40 text-center bg-white/10">
+                        Reservations
+                    </a>
+                    <button onclick="logout()" class="rounded-xl bg-brand-primary px-4 py-2 text-sm font-semibold text-white w-40 text-center">
+                        Sign out
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="mx-auto max-w-7xl px-6 flex-grow py-12">
+        <section class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+                <div>
+                    <span class="inline-flex items-center gap-2 rounded-full bg-brand-blue/10 px-4 py-1 text-sm font-semibold text-brand-blue">
+                        Reservation management
+                    </span>
+                    <h1 class="mt-4 text-3xl font-semibold leading-tight">Reservations</h1>
+                    <p class="mt-2 max-w-2xl text-sm text-black/70">
+                        View, create, and manage your reservations here.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reservations list -->
+        <section class="mt-8 grid gap-8 lg:grid-cols-12">
+            <div class="lg:col-span-8 space-y-6">
+                <!-- Reservation cards injected by reservations.js -->
+                <div id="reservations-container" class="space-y-4"></div>
+
+                <button id="new-reservation" class="mt-4 rounded-2xl bg-brand-primary px-6 py-3 text-white font-semibold hover:bg-brand-dark/80 transition-all duration-200">
+                    New Reservation
+                </button>
+            </div>
+
+            <!-- Optional info sidebar -->
+            <aside class="lg:col-span-4 space-y-6">
+                <div class="rounded-3xl bg-white p-6 shadow-soft">
+                    <h3 class="font-semibold">Reservation tips</h3>
+                    <ul class="mt-4 space-y-2 text-sm text-black/70">
+                        <li>• Check resource availability before booking.</li>
+                        <li>• Add notes for clarity on reservation purpose.</li>
+                        <li>• Only active reservations are editable.</li>
+                        <li>• Use the New Reservation button to quickly create a reservation.</li>
+                    </ul>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white">
+        <div class="mx-auto max-w-7xl px-6 py-10">
+            <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+                <div class="flex items-center gap-3">
+                    <img src="logo.svg" alt="Booking System" class="h-8 w-8 opacity-90">
+                    <div class="leading-tight">
+                        <p class="text-sm font-semibold">Booking System</p>
+                        <p class="text-xs text-white/60">Secure resource booking</p>
+                    </div>
+                </div>
+                <nav class="flex items-center gap-3 text-sm text-white/70">
+                    <a href="/privacypolicy" class="rounded-full px-3 py-1 hover:bg-white/10 transition cursor-not-allowed pointer-events-none">Privacy</a>
+                    <a href="/terms" class="rounded-full px-3 py-1 hover:bg-white/10 transition cursor-not-allowed pointer-events-none">Terms</a>
+                    <a href="/cookiepolicy" class="rounded-full px-3 py-1 hover:bg-white/10 transition cursor-not-allowed pointer-events-none">Cookies</a>
+                </nav>
+            </div>
+            <div class="mt-8 border-t border-white/10 pt-4 text-xs text-white/50">
+                © <span id="year"></span> Ville Heikkiniemi. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>
