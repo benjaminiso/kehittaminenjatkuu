@@ -5,6 +5,7 @@ import os from "os";
 
 const PORT = process.env.IPORT || 3000;
 
+// Helper: Get local network IPs
 function getLocalIPs() {
   const nets = os.networkInterfaces();
   const results = [];
@@ -20,13 +21,10 @@ function getLocalIPs() {
   return results;
 }
 
-app.listen(PORT, () => {
+// Start the server on all interfaces
+app.listen(PORT, "0.0.0.0", () => {
   const ips = getLocalIPs();
-
   console.log(`Server running:`);
   console.log(`  http://localhost:${PORT}`);
-
-  ips.forEach(ip => {
-    console.log(`  http://${ip}:${PORT}`);
-  });
+  ips.forEach(ip => console.log(`  http://${ip}:${PORT}`));
 });

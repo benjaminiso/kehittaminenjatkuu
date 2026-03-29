@@ -1,100 +1,88 @@
-import session from "express-session";
-
-app.use(session({
-  secret: process.env.SESSION_SECRET || "super-secret-key",
-  resave: false,
-  saveUninitialized: false
-}));
-
 // src/app.js
 import express from "express";
+import session from "express-session";
 import resourcesRouter from "./routes/resources.routes.js";
 import reservationsRouter from "./routes/reservations.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import path from "path";
 import { fileURLToPath } from "url";
 
+// --- Fix for __dirname in ESM ---
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const app = express();
+const app = express(); // Must be first before using app
 
 // --- Middleware ---
-app.use(express.json()); // Parse application/json
 
-// Validator debug
-/*app.use((req, _res, next) => {
-  console.log('--- Incoming request --------------------------------');
-  console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
-  console.log('Headers:', req.headers);
-  console.log('Parsed body:', req.body);
-  console.log('------------------------------------------------------');
-  next();
-});*/
+// Session middleware
+app.use(session({
+  secret: process.env.SESSION_SECRET || "super-secret-key",
+  resave: false,
+  saveUninitialized: false
+}));
 
-// Serve everything in ./public as static assets
+// Parse JSON bodies
+app.use(express.json());
+
+// Serve static files
 const publicDir = path.join(__dirname, "..", "public");
 app.use(express.static(publicDir));
 
-// --- Views (HTML pages) ---
-app.get("/", (req, res) => {
-  res.sendFile(path.join(publicDir, "index.html"));
-});
-
-app.get("/resources", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/resources.html'));
-});
-
-app.get("/reservations", (req, res) => {
-  if (req.session && req.session.user) {
-    res.sendFile(path.join(__dirname, 'views/reservations.html'));
+// --- Authentication middleware ---
+function requireAuth(req, res, next) {
+  if (req.session?.user) {
+    next();
   } else {
     res.redirect("/login");
   }
+}
+
+// --- Routes ---
+
+// Frontend pages
+app.get("/", (_req, res) => {
+  res.sendFile(path.join(publicDir, "index.html"));
 });
 
-app.get("/login", (req, res) => {
+app.get("/resources", (_req, res) => {
+  res.sendFile(path.join(__dirname, "views/resources.html"));
+});
+
+app.get("/reservations", requireAuth, (_req, res) => {
+  res.sendFile(path.join(__dirname, "views/reservations.html"));
+});
+
+app.get("/login", (_req, res) => {
   res.sendFile(path.join(publicDir, "login.html"));
 });
 
-app.get("/register", (req, res) => {
+app.get("/register", (_req, res) => {
   res.sendFile(path.join(publicDir, "register.html"));
 });
 
-// ----------------------------
-// API routes
-// ----------------------------
+// --- API routes ---
 app.use("/api/resources", resourcesRouter);
 app.use("/api/reservations", reservationsRouter);
 app.use("/api/auth", authRoutes);
 
-// ----------------------------
-// API 404 (unknown API routes)
-// ----------------------------
-app.use("/api", (req, res) => {
+// --- API 404 ---
+app.use("/api", (_req, res) => {
   return res.status(404).json({
     ok: false,
     error: "Not found",
-    path: req.originalUrl,
+    path: _req.originalUrl,
   });
 });
 
-// ----------------------------
-// Frontend 404 (unknown pages)
-// ----------------------------
-app.use((req, res) => {
-  // If you have a dedicated 404.html, prefer that.
-  // Otherwise return a simple message.
+// --- Frontend 404 ---
+app.use((_req, res) => {
   return res.status(404).send("404 - Page not found");
 });
 
-// ----------------------------
-// Central error handler
-// ----------------------------
-app.use((err, req, res, next) => {
+// --- Central error handler ---
+app.use((err, _req, res, next) => {
   console.error("Unhandled error:", err);
-
-  // If a response already started, delegate to Express default handler
   if (res.headersSent) return next(err);
 
   return res.status(500).json({
