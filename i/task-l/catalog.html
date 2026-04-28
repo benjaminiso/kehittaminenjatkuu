@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Voltbikesuper — Catalog</title>
+    <meta name="description"
+        content="Browse the Voltbikesuper rental catalog — city bikes, trail bikes, road bikes and more.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="catalog.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <header>
+            <div class="brand">
+                <div class="logo" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 16l3-8h2l-3 8h6l3-8h2l-3 8h2v2H5v-2z" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="brand-title">Voltbikesuper</h1>
+                    <p class="brand-sub">Bikes for city days & weekend escapes</p>
+                </div>
+            </div>
+
+            <nav aria-label="Main navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="catalog.html">Catalog</a></li>
+                    <li><a href="Bookings.html">Bookings</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Intro -->
+            <section id="intro">
+                <h2>Rental catalog</h2>
+                <p style="color:var(--muted); max-width:70ch">
+                    Our selection includes city cruisers, gravel and trail bikes, and lightweight road bikes for longer
+                    rides. Prices are shown in Finnish format (€/d, €/wk). Choose the bike that fits your route —
+                    helmets and locks included.
+                </p>
+            </section>
+
+            <!-- Product Grid -->
+            <section id="catalog" aria-label="Product catalog" style="margin-top:20px;">
+                <h3 class="sr-only">Available bikes</h3>
+
+                <div class="product-grid" role="list">
+                    <!-- Card 1 -->
+                    <article class="product-card">
+                        <figure class="product-figure">
+                            <img src="Pictures/citybike.jpg" alt="Classic city bike parked near a café" width="400"
+                                height="300" loading="lazy">
+                        </figure>
+                        <div class="product-body">
+                            <h4>City Cruiser</h4>
+                            <p class="muted">Comfortable upright seating. Perfect for errands, parks, and neighborhood
+                                rides.</p>
+                            <div class="product-meta">
+                                <span class="price">39 €/d</span>
+                                <a class="btn btn-primary" href="/catalog/1">Rent</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="product-card">
+                        <figure class="product-figure">
+                            <img src="Pictures/mountainbike.jpg" alt="Mountain bike on a forest trail" width="400"
+                                height="300" loading="lazy">
+                        </figure>
+                        <div class="product-body">
+                            <h4>Trail Explorer</h4>
+                            <p class="muted">Sturdy frame and suspension for gravel paths and off-road trails.</p>
+                            <div class="product-meta">
+                                <span class="price">49 €/d</span>
+                                <a class="btn btn-primary" href="/catalog/2">Rent</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="product-card">
+                        <figure class="product-figure">
+                            <img src="Pictures/roadbike.webp" alt="Road bike on a country road" width="400" height="300"
+                                loading="lazy">
+                        </figure>
+                        <div class="product-body">
+                            <h4>Road Runner</h4>
+                            <p class="muted">Lightweight and built for speed — ideal for long-distance weekend rides.
+                            </p>
+                            <div class="product-meta">
+                                <span class="price">59 €/d</span>
+                                <a class="btn btn-primary" href="/catalog/3">Rent</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 4 -->
+                    <article class="product-card">
+                        <figure class="product-figure">
+                            <img src="Pictures/commuterbike.jpg" alt="Electric commuter bike parked by a bike rack"
+                                width="400" height="300" loading="lazy">
+                        </figure>
+                        <div class="product-body">
+                            <h4>Electric Commuter</h4>
+                            <p class="muted">Pedal-assist for effortless commuting and hill climbs.</p>
+                            <div class="product-meta">
+                                <span class="price">89 €/d</span>
+                                <a class="btn btn-primary" href="/catalog/4">Rent</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 5 -->
+                    <article class="product-card">
+                        <figure class="product-figure">
+                            <img src="Pictures/childbike.jpg" alt="Child's bike with training wheels" width="400"
+                                height="300" loading="lazy">
+                        </figure>
+                        <div class="product-body">
+                            <h4>Kids Ride</h4>
+                            <p class="muted">Safe, low seat, and optional training wheels — perfect for families.</p>
+                            <div class="product-meta">
+                                <span class="price">19 €/d</span>
+                                <a class="btn btn-primary" href="/catalog/5">Rent</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 6 -->
+                    <article class="product-card">
+                        <figure class="product-figure">
+                            <img src="Pictures/gravelbike.webp" alt="Gravel bike on a country track" width="400"
+                                height="300" loading="lazy">
+                        </figure>
+                        <div class="product-body">
+                            <h4>Gravel Adventure</h4>
+                            <p class="muted">Versatile geometry for mixed surfaces and long days in the saddle.</p>
+                            <div class="product-meta">
+                                <span class="price">52 €/d</span>
+                                <a class="btn btn-primary" href="/catalog/6">Rent</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Video section -->
+            <section id="video" style="margin-top:30px;">
+                <h2>Product & safety video</h2>
+                <p style="color:var(--muted)">A short video on how to wear a helmet.</p>
+
+                <div class="video-wrap" style="margin-top:12px;">
+                    <iframe width="960" height="540" style="max-width:100%;border-radius:12px; border:0;"
+                        src="https://www.youtube.com/embed/1XJIqbbL1uc" title="Voltbikesuper Promo"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <div>
+                <small>&copy;2025 Voltbikesuper — All rights reserved</small><br>
+                <span style="color:var(--muted)">Contact: <a class="link"
+                        href="mailto:hello@voltbikesuper.example">hello@voltbikesuper.example</a></span>
+            </div>
+            <div class="socials">
+                <a href="#" class="link" aria-label="Instagram">IG</a>
+                <a href="#" class="link" aria-label="Twitter">TW</a>
+            </div>
+        </footer>
+
+    </div>
+</body>
+
+</html>
