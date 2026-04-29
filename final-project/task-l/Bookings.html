@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Voltbikesuper — Book Your Bike</title>
+  <meta name="description" content="Book a high-quality rental bike from Voltbikesuper.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="index.js"></script>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+  <div class="brand">
+    <div class="logo">
+      <svg viewBox="0 0 24 24"><path d="M5 16l3-8h2l-3 8h6l3-8h2l-3 8h2v2H5v-2z"/></svg>
+    </div>
+    <div>
+      <h1 class="brand-title">Voltbikesuper</h1>
+      <p class="brand-sub">Bikes for city days & weekend escapes</p>
+    </div>
+  </div>
+
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="catalog.html">Catalog</a></li>
+      <li><a href="Bookings.html" class="cta">Bookings</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero-card" style="max-width:700px;margin:auto;margin-top:32px;">
+    <h2>Bike booking form</h2>
+    <p class="lead" style="color:var(--muted);">Fill in your information to reserve a bike.</p>
+
+    <form id="booking-form" novalidate style="margin-top:22px; display:grid; gap:18px;">
+
+      <div>
+        <label for="fullname">Full name</label>
+        <input id="fullname" type="text" placeholder="e.g., Benjamin Isohanni" required>
+        <span id="fullnameError" class="error"></span>
+      </div>
+
+      <div>
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="e.g., benjamin@example.com" required>
+        <span id="emailError" class="error"></span>
+      </div>
+
+      <div>
+        <label for="bike">Choose bike</label>
+        <select id="bike" required>
+          <option value="">-- Select a bike --</option>
+          <option value="City Cruiser">City Cruiser</option>
+          <option value="Trail Explorer">Trail Explorer</option>
+          <option value="Road Runner">Road Runner</option>
+          <option value="Electric Commuter">Electric Commuter</option>
+          <option value="Kids Ride">Kids Ride</option>
+          <option value="Gravel Adventure">Gravel Adventure</option>
+        </select>
+        <span id="bikeError" class="error"></span>
+      </div>
+
+      <div>
+        <label for="rentdate">Rent date</label>
+        <input id="rentdate" type="date" required>
+        <span id="rentdateError" class="error"></span>
+      </div>
+
+      <div>
+        <label for="returndate">Return date</label>
+        <input id="returndate" type="date" required>
+        <span id="returndateError" class="error"></span>
+      </div>
+
+      <div>
+        <label>
+          <input type="checkbox" id="terms"> Accept the terms and conditions
+        </label>
+        <span id="termsError" class="error"></span>
+      </div>
+
+      <button class="btn btn-primary" type="submit">Book now</button>
+
+    </form>
+  </section>
+
+
+
+</main>
+
+<footer>
+  <div>
+    <small>&copy;2025 Voltbikesuper — All rights reserved</small><br>
+    <span style="color:var(--muted)">
+      Contact: <a class="link" href="mailto:hello@voltbikesuper.example">hello@voltbikesuper.example</a>
+    </span>
+  </div>
+
+  <div class="socials">
+    <a href="#" class="link">IG</a>
+    <a href="#" class="link">TW</a>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
